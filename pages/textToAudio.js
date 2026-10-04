@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const textFromGPT = "こんにちは";
 
 const convertTextToAudio = async (textFromGPT) => {
@@ -27,11 +29,22 @@ const convertTextToAudio = async (textFromGPT) => {
   }
 };
 
-export default function textToAudio() {
+export default function TextToAudio() {
+  const [audio, setAudio] = useState("");
+  const [pending, setPending] = useState(false);
+  const generateAudio = async () => {
+    setPending(true);
+    try {
+      setAudio((await convertTextToAudio(textFromGPT)) || "");
+    } finally {
+      setPending(false);
+    }
+  };
   return (
     <>
       <h1>Hello This is from textToAudio.js</h1>
-      <p>{convertTextToAudio(textFromGPT)}</p>
+      <button onClick={generateAudio} disabled={pending}>音声に変換</button>
+      <p>{audio}</p>
     </>
   );
 }

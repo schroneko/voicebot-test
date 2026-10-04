@@ -6,15 +6,28 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:security": "node --test tests/glob-migration.test.cjs"
   },
   "dependencies": {
     "next": "^15.5.24",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "fast-glob": "file:./vendor/glob-compat",
+    "micromatch": "file:./vendor/match-compat"
   },
   "devDependencies": {
     "eslint": "^8.57.1",
     "eslint-config-next": "^15.5.24"
+  },
+  "resolutions": {
+    "flatted": "3.4.2",
+    "minimist": "1.2.8",
+    "postcss": "8.5.28",
+    "picomatch": "2.3.2",
+    "minimatch": "3.1.4",
+    "brace-expansion": "1.1.21",
+    "fast-glob": "file:./vendor/glob-compat",
+    "micromatch": "file:./vendor/match-compat"
   }
 }
